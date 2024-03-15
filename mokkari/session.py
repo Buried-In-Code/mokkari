@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import platform
 from collections import OrderedDict
-from typing import Any
+from typing import Any, List
 from urllib.parse import urlencode
 
 import requests
@@ -140,7 +140,7 @@ class Session:
 
         """
         resp = self._get_results(["creator"], params)
-        adaptor = TypeAdapter(list[BaseResource])
+        adaptor = TypeAdapter(List[BaseResource])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as error:
@@ -186,7 +186,7 @@ class Session:
 
         """
         resp = self._get_results(["character"], params)
-        adaptor = TypeAdapter(list[BaseResource])
+        adaptor = TypeAdapter(List[BaseResource])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as error:
@@ -208,7 +208,7 @@ class Session:
 
         """
         resp = self._get_results(["character", _id, "issue_list"])
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -254,7 +254,7 @@ class Session:
 
         """
         resp = self._get_results(["publisher"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -300,7 +300,7 @@ class Session:
 
         """
         resp = self._get_results(["team"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -322,7 +322,7 @@ class Session:
 
         """
         resp = self._get_results(["team", _id, "issue_list"])
-        adapter = TypeAdapter(list[BaseIssue])
+        adapter = TypeAdapter(List[BaseIssue])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -368,7 +368,7 @@ class Session:
 
         """
         resp = self._get_results(["arc"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -388,7 +388,7 @@ class Session:
 
         """
         resp = self._get_results(["arc", _id, "issue_list"])
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -434,7 +434,7 @@ class Session:
 
         """
         resp = self._get_results(["series"], params)
-        adaptor = TypeAdapter(list[BaseSeries])
+        adaptor = TypeAdapter(List[BaseSeries])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -460,7 +460,7 @@ class Session:
 
         """
         resp = self._get_results(["series_type"], params)
-        adaptor = TypeAdapter(list[GenericItem])
+        adaptor = TypeAdapter(List[GenericItem])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -506,7 +506,7 @@ class Session:
 
         """
         resp = self._get_results(["issue"], params)
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -528,7 +528,7 @@ class Session:
 
         """
         resp = self._get_results(["role"], params)
-        adaptor = TypeAdapter(list[GenericItem])
+        adaptor = TypeAdapter(List[GenericItem])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -574,7 +574,7 @@ class Session:
 
         """
         resp = self._get_results(["universe"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -639,7 +639,8 @@ class Session:
                 headers=self.header,
             ).json()
         except requests.exceptions.ConnectionError as e:
-            raise exceptions.ApiError(f"Connection error: {e!r}") from e
+            msg = f"Connection error: {e!r}"
+            raise exceptions.ApiError(msg) from e
 
         return response
 
@@ -650,9 +651,8 @@ class Session:
             try:
                 cached_response = self.cache.get(key)
             except AttributeError as e:
-                raise exceptions.CacheError(
-                    f"Cache object passed in is missing attribute: {e!r}"
-                ) from e
+                msg = f"Cache object passed in is missing attribute: {e!r}"
+                raise exceptions.CacheError(msg) from e
 
         return cached_response
 
@@ -661,6 +661,5 @@ class Session:
             try:
                 self.cache.store(key, data)
             except AttributeError as e:
-                raise exceptions.CacheError(
-                    f"Cache object passed in is missing attribute: {e!r}"
-                ) from e
+                msg = f"Cache object passed in is missing attribute: {e!r}"
+                raise exceptions.CacheError(msg) from e

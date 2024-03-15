@@ -37,20 +37,10 @@ def test_known_character(talker: Session) -> None:
     assert len(black_bolt.creators) == 2
     assert len(black_bolt.teams) == 3
     assert black_bolt.modified == datetime(
-        2024,
-        1,
-        28,
-        13,
-        25,
-        35,
-        568293,
-        tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400"),
+        2024, 1, 28, 13, 25, 35, 568293, tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400")
     )
     assert any(item.name == "Earth 616" for item in black_bolt.universes)
-    assert (
-        black_bolt.resource_url.__str__()
-        == "https://metron.cloud/character/black-bolt/"
-    )
+    assert black_bolt.resource_url.__str__() == "https://metron.cloud/character/black-bolt/"
 
 
 def test_character_list(talker: Session) -> None:
@@ -94,21 +84,14 @@ def test_bad_character_validate(talker: Session) -> None:
         "desc": "Foo",
         "image": "https://static.metron.cloud/media/character/2018/11/15/moon-knight.jpg",
         "creators": [
-            {
-                "id": 146,
-                "name": "Doug Moench",
-                "modified": "2019-06-23T15:13:21.994966-04:00",
-            }
+            {"id": 146, "name": "Doug Moench", "modified": "2019-06-23T15:13:21.994966-04:00"}
         ],
         "teams": [],
         "modified": "2020-07-29T17:48:36.347982-04:00",
     }
 
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/character/150/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/character/150/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.character(150)

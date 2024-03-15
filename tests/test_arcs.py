@@ -22,14 +22,7 @@ def test_known_arc(talker: Session) -> None:
         == "https://static.metron.cloud/media/arc/2018/11/13/witching-hour.jpg"
     )
     assert witching.modified == datetime(
-        2019,
-        6,
-        23,
-        15,
-        13,
-        19,
-        507207,
-        tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400"),
+        2019, 6, 23, 15, 13, 19, 507207, tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400")
     )
     assert witching.resource_url.__str__() == "https://metron.cloud/arc/witching-hour/"
 
@@ -80,10 +73,7 @@ def test_bad_arc_validate(talker: Session) -> None:
         "modified": "2019-06-23T15:13:19.432378-04:00",
     }
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/arc/500/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/arc/500/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.arc(500)

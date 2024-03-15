@@ -9,6 +9,8 @@ This module provides the following classes:
 - Series
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 
 from pydantic import Field, HttpUrl

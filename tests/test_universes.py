@@ -58,10 +58,7 @@ def test_bad_universe_validate(talker: Session) -> None:
     }
 
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/universe/150/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/universe/150/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.universe(150)

@@ -35,10 +35,7 @@ def test_known_series(talker: Session) -> None:
         526656,
         tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400"),
     )
-    assert (
-        death.resource_url.__str__()
-        == "https://metron.cloud/series/death-of-the-inhumans-2018/"
-    )
+    assert death.resource_url.__str__() == "https://metron.cloud/series/death-of-the-inhumans-2018/"
 
 
 def test_series_without_year_end(talker: Session) -> None:
@@ -102,10 +99,7 @@ def test_bad_series_validate(talker: Session) -> None:
         "image": "https://static.metron.cloud/media/issue/2019/02/06/gunhawks-1.jpg",
     }
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/series/150/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/series/150/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.series(150)

@@ -24,14 +24,7 @@ def test_known_creator(talker: Session) -> None:
         == "https://static.metron.cloud/media/creator/2018/11/11/432124-Jack_Kirby01.jpg"
     )
     assert jack.modified == datetime(
-        2019,
-        6,
-        23,
-        15,
-        13,
-        22,
-        311024,
-        tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400"),
+        2019, 6, 23, 15, 13, 22, 311024, tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400")
     )
     assert jack.resource_url.__str__() == "https://metron.cloud/creator/jack-kirby/"
 
@@ -73,10 +66,7 @@ def test_bad_creator_validate(talker: Session) -> None:
     }
 
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/creator/150/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/creator/150/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.creator(150)

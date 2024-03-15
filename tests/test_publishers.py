@@ -23,14 +23,7 @@ def test_known_publishers(talker: Session) -> None:
     )
     assert marvel.founded == 1939
     assert marvel.modified == datetime(
-        2019,
-        6,
-        23,
-        15,
-        13,
-        23,
-        591390,
-        tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400"),
+        2019, 6, 23, 15, 13, 23, 591390, tzinfo=timezone(timedelta(days=-1, seconds=72000), "-0400")
     )
     assert marvel.resource_url.__str__() == "https://metron.cloud/publisher/marvel/"
 
@@ -70,10 +63,7 @@ def test_bad_publisher_validate(talker: Session) -> None:
     }
 
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/publisher/15/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/publisher/15/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.publisher(15)

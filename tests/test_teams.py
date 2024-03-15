@@ -18,8 +18,7 @@ def test_known_team(talker: Session) -> None:
     inhumans = talker.team(1)
     assert inhumans.name == "Inhumans"
     assert (
-        inhumans.image.__str__()
-        == "https://static.metron.cloud/media/team/2018/11/11/Inhumans.jpg"
+        inhumans.image.__str__() == "https://static.metron.cloud/media/team/2018/11/11/Inhumans.jpg"
     )
     assert len(inhumans.creators) == 2
     assert any(item.name == "Earth 616" for item in inhumans.universes)
@@ -72,10 +71,7 @@ def test_bad_team_validate(talker: Session) -> None:
     }
 
     with requests_mock.Mocker() as r:
-        r.get(
-            "https://metron.cloud/api/team/150/",
-            text=json.dumps(data),
-        )
+        r.get("https://metron.cloud/api/team/150/", text=json.dumps(data))
 
         with pytest.raises(exceptions.ApiError):
             talker.team(150)
