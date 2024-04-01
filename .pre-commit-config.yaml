@@ -4,16 +4,6 @@ repos:
     hooks:
       - id: ruff-format
       - id: ruff
-  - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.17
-    hooks:
-      - id: mdformat
-        additional_dependencies:
-          - mdformat-gfm
-          - mdformat-tables
-        args:
-          - --number
-          - --wrap=keep
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
