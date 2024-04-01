@@ -37,7 +37,7 @@ maintainers = [
   {email = "BuriedInCode@tuta.io", name = "BuriedInCode"}
 ]
 name = "mokkari"
-readme = "README.md"
+readme = "README.rst"
 requires-python = ">= 3.8"
 
 [project.optional-dependencies]
