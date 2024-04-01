@@ -1,36 +1,62 @@
 =======
 Mokkari
 =======
-.. image:: https://img.shields.io/pypi/v/mokkari.svg?logo=PyPI&label=Version&style=flat-square   :alt: PyPI
-    :target: https://pypi.org/project/mokkari
 
-.. image:: https://img.shields.io/pypi/pyversions/mokkari.svg?logo=Python&label=Python-Versions&style=flat-square
-    :target: https://pypi.org/project/mokkari
+.. |Python| image:: https://img.shields.io/badge/Python-3%2E8%20%7C%203%2E9-green?logo=Python&style=flat-square
+   :alt: Python
+.. |Status| image:: https://img.shields.io/pypi/status/mokkari.svg?logo=Python&label=Status&style=flat-square
+   :target: https://pypi.org/project/mokkari
+   :alt: Status
+.. |Version| image:: https://img.shields.io/pypi/v/mokkari.svg?logo=Python&label=Version&style=flat-square
+   :target: https://pypi.org/project/mokkari
+   :alt: Version
+.. |License| image:: https://img.shields.io/github/license/bpepple/mokkari?logo=Python&label=License&style=flat-square
+   :target: https://opensource.org/licenses/GPL-3.0
+   :alt: License
 
-.. image:: https://img.shields.io/github/license/bpepple/mokkari
-    :target: https://opensource.org/licenses/GPL-3.0
+.. |Hatch| image:: https://img.shields.io/badge/Packaging-Hatch-4051b5?style=flat-square
+   :target: https://github.com/pypa/hatch
+   :alt: Hatch
+.. |Pre-Commit| image:: https://img.shields.io/badge/Pre--Commit-Enabled-informational?style=flat-square&logo=pre-commit
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: Pre-Commit
+.. |Linter| image:: https://img.shields.io/badge/Linter-Ruff-informational?style=flat-square
+   :target: https://github.com/astral-sh/ruff
+   :alt: Ruff (Linter)
+.. |Formatter| image:: https://img.shields.io/badge/Formatter-Ruff-informational?style=flat-square
+   :target: https://github.com/astral-sh/ruff
+   :alt: Ruff (Formatter)
 
-.. image:: https://img.shields.io/badge/Code%20Style-Black-000000.svg?style=flat-square
-    :target: https://github.com/psf/black
+.. |Tests| image:: https://img.shields.io/github/actions/workflow/status/Buried-In-Code/mokkari/testing%2Eyaml?branch=main&logo=Github-Actions&label=Tests&style=flat-square
+   :target: https://github.com/Buried-In-Code/mokkari/actions/workflows/testing%2Eyaml
+
+|Python| |Status| |Version| |License|
+
+|Hatch| |Pre-commit| |Linter| |Formatter|
+
+|Tests|
 
 Quick Description
 -----------------
-A python wrapper for the metron.cloud_ API.
+
+A backport for Python 3.8 & Python 3.9 of the python wrapper for the metron.cloud_ API.
 
 .. _metron.cloud: https://metron.cloud
 
 Installation
 ------------
 
-PyPi
-~~~~
+Add the following to your pyproject:
 
-.. code:: bash
+.. code-block:: toml
 
-  $ pip3 install --user mokkari
+  dependencies = [
+    "mokkari@git+https://github.com/Buried-In-Code/mokkari ; python_version < \"3.10\""
+  ]
 
 Example Usage
 -------------
+
 .. code-block:: python
 
     import mokkari
@@ -52,14 +78,15 @@ Example Usage
 
     # Print the issue Description
     print(asm_68.desc)
-
+  
 Documentation
 -------------
+
 - `Read the project documentation <https://mokkari.readthedocs.io/en/latest/>`_
 
 Bugs/Requests
 -------------
-
+  
 Please use the `GitHub issue tracker <https://github.com/Metron-Project/mokkari/issues>`_ to submit bugs or request features.
 
 License
