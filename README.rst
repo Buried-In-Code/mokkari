@@ -78,7 +78,7 @@ Example Usage
 
     # Print the issue Description
     print(asm_68.desc)
-  
+
 Documentation
 -------------
 
@@ -86,7 +86,7 @@ Documentation
 
 Bugs/Requests
 -------------
-  
+
 Please use the `GitHub issue tracker <https://github.com/Metron-Project/mokkari/issues>`_ to submit bugs or request features.
 
 License
