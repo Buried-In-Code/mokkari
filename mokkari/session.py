@@ -639,8 +639,7 @@ class Session:
                 headers=self.header,
             ).json()
         except requests.exceptions.ConnectionError as e:
-            msg = f"Connection error: {e!r}"
-            raise exceptions.ApiError(msg) from e
+            raise exceptions.ApiError(f"Connection error: {e!r}") from e
 
         return response
 
@@ -651,8 +650,9 @@ class Session:
             try:
                 cached_response = self.cache.get(key)
             except AttributeError as e:
-                msg = f"Cache object passed in is missing attribute: {e!r}"
-                raise exceptions.CacheError(msg) from e
+                raise exceptions.CacheError(
+                    f"Cache object passed in is missing attribute: {e!r}"
+                ) from e
 
         return cached_response
 
@@ -661,5 +661,6 @@ class Session:
             try:
                 self.cache.store(key, data)
             except AttributeError as e:
-                msg = f"Cache object passed in is missing attribute: {e!r}"
-                raise exceptions.CacheError(msg) from e
+                raise exceptions.CacheError(
+                    f"Cache object passed in is missing attribute: {e!r}"
+                ) from e
