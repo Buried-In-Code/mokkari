@@ -5,6 +5,8 @@ This module provides the following classes:
 - Arc
 """
 
+from __future__ import annotations
+
 from pydantic import HttpUrl
 
 from mokkari.schemas.base import BaseResource

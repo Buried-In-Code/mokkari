@@ -1,8 +1,9 @@
 """Project entry file."""
 
+from __future__ import annotations
+
 # Keep this at beginning of file to prevent circular import with session
 __version__ = "3.2.0"
-
 
 from mokkari import exceptions, session, sqlite_cache
 

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import platform
 from collections import OrderedDict
-from typing import Any
+from typing import Any, List
 from urllib.parse import urlencode
 
 import requests
@@ -139,7 +139,7 @@ class Session:
 
         """
         resp = self._get_results(["creator"], params)
-        adaptor = TypeAdapter(list[BaseResource])
+        adaptor = TypeAdapter(List[BaseResource])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as error:
@@ -183,7 +183,7 @@ class Session:
 
         """
         resp = self._get_results(["character"], params)
-        adaptor = TypeAdapter(list[BaseResource])
+        adaptor = TypeAdapter(List[BaseResource])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as error:
@@ -204,7 +204,7 @@ class Session:
 
         """
         resp = self._get_results(["character", _id, "issue_list"])
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -245,7 +245,7 @@ class Session:
 
         """
         resp = self._get_results(["publisher"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -288,7 +288,7 @@ class Session:
 
         """
         resp = self._get_results(["team"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -308,7 +308,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["team", _id, "issue_list"])
-        adapter = TypeAdapter(list[BaseIssue])
+        adapter = TypeAdapter(List[BaseIssue])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -350,7 +350,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["arc"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:
@@ -370,7 +370,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["arc", _id, "issue_list"])
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -412,7 +412,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["series"], params)
-        adaptor = TypeAdapter(list[BaseSeries])
+        adaptor = TypeAdapter(List[BaseSeries])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -434,7 +434,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["series_type"], params)
-        adaptor = TypeAdapter(list[GenericItem])
+        adaptor = TypeAdapter(List[GenericItem])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -476,7 +476,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["issue"], params)
-        adaptor = TypeAdapter(list[BaseIssue])
+        adaptor = TypeAdapter(List[BaseIssue])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -498,7 +498,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["role"], params)
-        adaptor = TypeAdapter(list[GenericItem])
+        adaptor = TypeAdapter(List[GenericItem])
         try:
             result = adaptor.validate_python(resp["results"])
         except ValidationError as err:
@@ -540,7 +540,7 @@ class Session:
             ApiError: If there is an error in the API response data validation.
         """
         resp = self._get_results(["universe"], params)
-        adapter = TypeAdapter(list[BaseResource])
+        adapter = TypeAdapter(List[BaseResource])
         try:
             result = adapter.validate_python(resp["results"])
         except ValidationError as err:

@@ -5,6 +5,8 @@ This module provides the following classes:
 - Creator
 """
 
+from __future__ import annotations
+
 from datetime import date
 
 from pydantic import HttpUrl, PastDate

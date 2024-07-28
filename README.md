@@ -1,16 +1,20 @@
 # Mokkari
 
 [![PyPI - Version](https://img.shields.io/pypi/v/mokkari.svg)](https://pypi.org/project/mokkari/)
-[![PyPI - Python](https://img.shields.io/pypi/pyversions/mokkari.svg)](https://pypi.org/project/mokkari/)
-[![Ruff](https://img.shields.io/badge/Linter-Ruff-informational)](https://github.com/charliermarsh/ruff)
-[![Pre-Commit](https://img.shields.io/badge/Pre--Commit-Enabled-informational?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9-informational)
 
-A python wrapper for the [Metron Comic Book Database](https://metron.cloud) API.
+[![Rye](https://img.shields.io/badge/Rye-informational?logo=rye&labelColor=grey)](https://rye.astral.sh)
+[![Pre-Commit](https://img.shields.io/badge/Pre--Commit-informational?logo=pre-commit&labelColor=grey)](https://github.com/pre-commit/pre-commit)
+[![Ruff](https://img.shields.io/badge/Ruff-informational?logo=ruff&labelColor=grey)](https://github.com/astral-sh/ruff)
+
+A backport for Python 3.8 & 3.9 of the python wrapper for the [Metron Comic Book Database](https://metron.cloud) API.
 
 ## Installation
 
-```bash
-pipx install mokkari
+```toml
+dependencies = [
+    "mokkari@git+https://github.com/Buried-In-Code/mokkari ; python_version < \"3.10\""
+]
 ```
 
 ## Example Usage
@@ -43,6 +47,4 @@ print(asm_68.desc)
 
 ## Bugs/Requests
 
-Please use the
-[GitHub issue tracker](https://github.com/Metron-Project/mokkari/issues) to
-submit bugs or request features.
+Please use the [GitHub issue tracker](https://github.com/Metron-Project/mokkari/issues) to submit bugs or request features.
